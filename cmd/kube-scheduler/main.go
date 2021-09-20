@@ -12,6 +12,6 @@ func main() {
 		sched.WithPlugin(random.Name, random.New),
 	)
 	if err := cmd.Execute(); err != nil {
-		klog.Fatalf("failed to execute %q: %v", greedy.Name, err)
+		klog.Fatalf("failed to execute %q: %v", random.Name, err)
 	}
 }
