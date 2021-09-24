@@ -1,4 +1,4 @@
-// Package greedy contains an out-of-tree plugin based on the Kubernetes
+// Package random contains an out-of-tree plugin based on the Kubernetes
 // scheduling framework.
 package random
 
@@ -19,7 +19,7 @@ const (
 
 	// sla is the maximum slowdown that is allowed for an application when
 	// it is being scheduled along another one.
-	sla = 1.5
+	sla = 35
 
 	// randomLabelKey is the key of the Kubernetes Label which every
 	// application that needs to be tracked by RandomPlugin should have.
@@ -188,7 +188,7 @@ func (ap *RandomPlugin) Score(
 	return score, framework.NewStatus(framework.Success, fmt.Sprintf("Node '%s': interim score = %d", nodeName, score))
 }
 
-// ScoreExtensions returns the GreedyPlugin itself, since it implements the
+// ScoreExtensions returns the RandomPlugin itself, since it implements the
 // framework.ScoreExtensions interface.
 func (ap *RandomPlugin) ScoreExtensions() framework.ScoreExtensions {
 	return ap
