@@ -18,23 +18,25 @@ import (
 // slowdowns among all applications are known and hardcoded.
 type HardcodedSlowDowns struct {
 	randomLabelKey string
+	categoryLabelKey string
 }
 
 // New returns a new HardcodedSlowDowns with the given label key (the one that
 // is used by RandomPlugin to track its applications).
-func New(randomLabelKey string) *HardcodedSlowDowns {
+func New(randomLabelKey string, categoryLabelKey string) *HardcodedSlowDowns {
 	return &HardcodedSlowDowns{
 		randomLabelKey: randomLabelKey,
+		categoryLabelKey: categoryLabelKey,
 	}
 }
 
 // Attack implements random.InterferenceModel; see the documentation there for
 // more information.
 func (m *HardcodedSlowDowns) Attack(attacker, occupant *corev1.Pod) (float64, error) {
-	occPodCategory, _ := parseAppCategory(occupant.Labels[m.randomLabelKey])
+	occPodCategory, _ := parseAppCategory(occupant.Labels[m.categoryLabelKey])
 	//  occupant   ^^^   Pod's label's value must have been
 	// validated back when it was first scheduled on the Node
-	newPodCategory, err := parseAppCategory(attacker.Labels[m.randomLabelKey])
+	newPodCategory, err := parseAppCategory(attacker.Labels[m.categoryLabelKey])
 	if err != nil {
 		return -1, err
 	}
