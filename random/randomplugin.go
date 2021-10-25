@@ -23,7 +23,7 @@ const (
 
 	// randomLabelKey is the key of the Kubernetes Label which every
 	// application that needs to be tracked by RandomPlugin should have.
-	randomLabelKey = "random"
+	randomLabelKey = "category"
 )
 
 // RandomPlugin is an out-of-tree plugin for the kube-scheduler, which takes into
