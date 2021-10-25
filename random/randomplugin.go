@@ -49,7 +49,7 @@ var (
 func New(configuration runtime.Object, f framework.Handle) (framework.Plugin, error) {
 	return &RandomPlugin{
 		handle: f,
-		model:  hardcoded.New(randomLabelKey, categoryLabelKey),
+		model:  hardcoded.New(randomLabelKey),
 	}, nil
 }
 
