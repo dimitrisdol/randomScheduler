@@ -23,10 +23,9 @@ type HardcodedSlowDowns struct {
 
 // New returns a new HardcodedSlowDowns with the given label key (the one that
 // is used by RandomPlugin to track its applications).
-func New(randomLabelKey string, categoryLabelKey string) *HardcodedSlowDowns {
+func New(randomLabelKey string) *HardcodedSlowDowns {
 	return &HardcodedSlowDowns{
 		randomLabelKey: randomLabelKey,
-		categoryLabelKey: categoryLabelKey,
 	}
 }
 
