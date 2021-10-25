@@ -41,7 +41,7 @@ metadata:
   name: {{ .Name }}
   namespace: default
   labels:
-    random: randomPod
+    random: cat{{ .Category }}
     category: cat{{ .Category }}
 spec:
   schedulerName: default-scheduler
