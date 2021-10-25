@@ -42,7 +42,6 @@ metadata:
   namespace: default
   labels:
     random: cat{{ .Category }}
-    category: cat{{ .Category }}
 spec:
   schedulerName: default-scheduler
   containers:

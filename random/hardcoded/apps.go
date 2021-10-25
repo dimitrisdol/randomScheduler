@@ -18,7 +18,6 @@ import (
 // slowdowns among all applications are known and hardcoded.
 type HardcodedSlowDowns struct {
 	randomLabelKey string
-	categoryLabelKey string
 }
 
 // New returns a new HardcodedSlowDowns with the given label key (the one that
@@ -32,10 +31,10 @@ func New(randomLabelKey string) *HardcodedSlowDowns {
 // Attack implements random.InterferenceModel; see the documentation there for
 // more information.
 func (m *HardcodedSlowDowns) Attack(attacker, occupant *corev1.Pod) (float64, error) {
-	occPodCategory, _ := parseAppCategory(occupant.Labels[m.categoryLabelKey])
+	occPodCategory, _ := parseAppCategory(occupant.Labels[m.randomLabelKey])
 	//  occupant   ^^^   Pod's label's value must have been
 	// validated back when it was first scheduled on the Node
-	newPodCategory, err := parseAppCategory(attacker.Labels[m.categoryLabelKey])
+	newPodCategory, err := parseAppCategory(attacker.Labels[m.randomLabelKey])
 	if err != nil {
 		return -1, err
 	}
